@@ -57,7 +57,8 @@ namespace PluginChaos.API.Utility
                         _Float = GenerateFloat(),
                         _Char = GenerateChar(),
                         _String = GenerateString(),
-                        _DateTime = GenerateDateTime()
+                        _DateTime = GenerateDateTime(),
+                        _Decimal = GenerateDecimal()
                     };
                 default:
                     options = DefaultOptions;

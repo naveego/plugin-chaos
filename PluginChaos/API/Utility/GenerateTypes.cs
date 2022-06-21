@@ -28,16 +28,12 @@ namespace PluginChaos.API.Utility
             return rndNum;
         }
 
-        public static float GenerateFloat()
+        public static double GenerateFloat()
         //Random float generated with Random.NextDouble.
         {
             var rnd = new Random();
-            double range = float.MaxValue - float.MinValue;
             var newF = rnd.NextDouble();
-            var scaled = (newF * range) + float.MinValue;
-            var newFloat = (float)scaled;
-            return newFloat;
-
+            return newF;
         }
 
         public static char GenerateChar()
@@ -65,6 +61,10 @@ namespace PluginChaos.API.Utility
         {
             return DateTime.Now;
         }
-        
+
+        public static decimal GenerateDecimal()
+        {
+            return Convert.ToDecimal("0.0");
+        }
     }
 }

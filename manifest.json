@@ -3,8 +3,8 @@
   "displayName": "Chaos",
   "description": "Causes defined record read errors.",
   "apiVersion": "2",
-  "versionDescription": "Version 2",
-  "version": "2.0.0",
+  "versionDescription": "Version 1",
+  "version": "1.0.0",
   "iconFile": "icon.jpg",
   "executable": "PluginChaos",
   "kind": "publisher",
@@ -18,19 +18,16 @@
   "configSchema": {
     "ui": {
       "ui:order": [
-        "ApiKey"
-      ],
-      "ApiKey": {
-        "ui:widget": "password"
-      }
+        "ConnectionName"
+      ]
     },
     "schema": {
       "type": "object",
       "properties": {
-        "ApiKey" : {
+        "ConnectionName" : {
           "type": "string",
-          "title": "API Key",
-          "description": "API key to use for authentication."
+          "title": "Connection Name",
+          "description": "Connection name."
         }
       },
       "required": [
