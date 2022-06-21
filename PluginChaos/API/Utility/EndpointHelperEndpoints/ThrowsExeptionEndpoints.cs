@@ -24,30 +24,32 @@ namespace PluginChaos.API.Utility.EndpointHelperEndpoints
     {
         private class ThrowsExceptionEndpoint : Endpoint
         {
-
             public override async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema,
                 bool isDiscoverRead = false)
             {
-
-                throw new Exception("No Records Found Chaos Error.");
-
-                var genRecord = Utility.GenerateRecord();
-
-                var record = new Record
+                var limit = 100;
+                var count = 0;
+                while (count < limit)
                 {
-                    Action = Record.Types.Action.Upsert,
-                    DataJson = JsonConvert.SerializeObject(genRecord)
-                };
-                //returns nothing
-                yield return record;
-            }
+                    throw new Exception("No Records Found Chaos Error.");
+                    var genRecord = Utility.GenerateRecord();
 
+                    var record = new Record
+                    {
+                        Action = Record.Types.Action.Upsert,
+                        DataJson = JsonConvert.SerializeObject(genRecord)
+                    };
+                    //returns nothing
+                    yield return record;
+                    count++;
+                }
+            }
             public override Task<Count> GetCountOfRecords()
             {
                 return base.GetCountOfRecords();
             }
         }
-
+        
         public static readonly Dictionary<string, Endpoint> Endpoints = new Dictionary<string, Endpoint>
         {
             {

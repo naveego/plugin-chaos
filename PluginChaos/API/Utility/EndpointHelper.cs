@@ -186,9 +186,20 @@ namespace PluginChaos.API.Utility
                 TypeAtSource = "DateTime"
             };
             properties.Add(propertyDateTime);
+            
+            var propertyDecimal = new Property
+            {
+                Id = "_Decimal",
+                Name = "_Decimal",
+                Type = PropertyType.Decimal,
+                IsKey = false,
+                IsNullable = true,
+                TypeAtSource = "Decimal"
+            };
+            properties.Add(propertyDecimal);
                 
             schema.Properties.AddRange(properties);
-
+            
             return Task.FromResult(schema);
         }
 

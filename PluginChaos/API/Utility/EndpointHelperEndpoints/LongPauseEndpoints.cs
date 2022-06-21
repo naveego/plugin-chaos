@@ -28,26 +28,29 @@ namespace PluginChaos.API.Utility.EndpointHelperEndpoints
             public override async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema,
                 bool isDiscoverRead = false)
             {
-                var genRecord = Utility.GenerateRecord();
-
-                var record = new Record
+                var limit = 100;
+                var count = 0;
+                while (count < limit)
                 {
-                    Action = Record.Types.Action.Upsert,
-                    DataJson = JsonConvert.SerializeObject(genRecord)
-                };
-                
-                //Sleeps 10 seconds before returning.
-                Thread.Sleep(10000);
-                
-                yield return record;
-            }
+                    var genRecord = Utility.GenerateRecord();
 
+                    var record = new Record
+                    {
+                        Action = Record.Types.Action.Upsert,
+                        DataJson = JsonConvert.SerializeObject(genRecord)
+                    };
+                    //Sleeps 5 seconds before returning.
+                    Thread.Sleep(5000);
+                    yield return record;
+                    count++;
+                }
+            }
             public override Task<Count> GetCountOfRecords( )
             {
                 return base.GetCountOfRecords();
             }
         }
-
+        
         public static readonly Dictionary<string, Endpoint> Endpoints = new Dictionary<string, Endpoint>
         {
             {

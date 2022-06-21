@@ -23,26 +23,28 @@ namespace PluginChaos.API.Utility.EndpointHelperEndpoints
     {
         private class RandomDataEndpoint : Endpoint
         {
-            
             public override async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema,
                 bool isDiscoverRead = false)
             {
+                var limit = 100;
+                var count = 0;
 
-                var genRecord = Utility.GenerateRecord(new Utility.GenerateRecordOptions
+                while (count < limit)
                 {
-                    RandomData = true,
-                });
+                    var genRecord = Utility.GenerateRecord(new Utility.GenerateRecordOptions
+                    {
+                        RandomData = true,
+                    });
                 
-                var record = new Record
-                {
-                    Action = Record.Types.Action.Upsert,
-                    DataJson = JsonConvert.SerializeObject(genRecord)
-                };
-                
-                yield return record;
-                
+                    var record = new Record
+                    {
+                        Action = Record.Types.Action.Upsert,
+                        DataJson = JsonConvert.SerializeObject(genRecord)
+                    };
+                    yield return record;
+                    count++;
+                }
             }
-            
             public override Task<Count> GetCountOfRecords()
             {
                 return base.GetCountOfRecords();

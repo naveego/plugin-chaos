@@ -839,7 +839,7 @@ namespace PluginChaosTest.Plugin
             
             //Can also add assert to compare that each count had same record.
             var totalTime = endTime - startTime;
-            Assert.InRange(totalTime, TimeSpan.FromSeconds(9), TimeSpan.FromSeconds(11));
+            Assert.InRange(totalTime, TimeSpan.FromSeconds(4), TimeSpan.FromSeconds(6));
             
            
 
@@ -1033,7 +1033,7 @@ namespace PluginChaosTest.Plugin
             var record = JsonConvert.DeserializeObject<Dictionary<string, object>>(records[0].DataJson);
             
             //Can also add assert to compare that each count had same record.
-            Assert.Equal(1, records.Count);
+            Assert.Equal(100, records.Count);
             
             
            

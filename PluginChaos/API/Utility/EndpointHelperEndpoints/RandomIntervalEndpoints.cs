@@ -24,33 +24,35 @@ namespace PluginChaos.API.Utility.EndpointHelperEndpoints
     {
         private class RandomIntervalEndpoint : Endpoint
         {
-            
             public override async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema,
                 bool isDiscoverRead = false)
             {
-                
-                var genRecord = Utility.GenerateRecord();
-
-                var record = new Record
+                var limit = 100;
+                var count = 0;
+                while (count < limit)
                 {
-                    Action = Record.Types.Action.Upsert,
-                    DataJson = JsonConvert.SerializeObject(genRecord)
-                };
-                //Random pause between .1 and 5 seconds for records.
-                var rnd = new Random();
-                var rndInt = rnd.Next(100, 5000);
-                Thread.Sleep(rndInt);
-                
-                yield return record;
-                
-            }
+                    var genRecord = Utility.GenerateRecord();
 
+                    var record = new Record
+                    {
+                        Action = Record.Types.Action.Upsert,
+                        DataJson = JsonConvert.SerializeObject(genRecord)
+                    };
+                    //Random pause between .1 and 5 seconds for records.
+                    var rnd = new Random();
+                    var rndInt = rnd.Next(100, 5000);
+                    Thread.Sleep(rndInt);
+                
+                    yield return record;
+                    count++;
+                }
+            }
             public override Task<Count> GetCountOfRecords()
             {
                 return base.GetCountOfRecords();
             }
         }
-
+        
         public static readonly Dictionary<string, Endpoint> Endpoints = new Dictionary<string, Endpoint>
         {
             {
