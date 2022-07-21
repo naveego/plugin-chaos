@@ -37,13 +37,14 @@ namespace PluginChaos.API.Utility
                         Id = 5,
                         Name = "Generic Name",
                         Description = "Generic Description",
-                        _Bool = false,
-                        _Byte = 255,
-                        _Int = 100,
-                        _Float = 3.14f,
-                        _Char = '\0',
-                        _String = "GenericString",
-                        _DateTime = DateTime.Now
+                        Bool = false,
+                        Byte = 255,
+                        Int = 100,
+                        Float = 3.14f,
+                        Char = '\0',
+                        String = "GenericString",
+                        DateTime = DateTime.Today
+                        
                     };
                 case { RandomData: true }:
                     return new GenericRecord
@@ -51,29 +52,28 @@ namespace PluginChaos.API.Utility
                         Id = GenerateInt(),
                         Name = GenerateString(),
                         Description = GenerateString(),
-                        _Bool = GenerateBool(),
-                        _Byte = GenerateByte(),
-                        _Int = GenerateInt(),
-                        _Float = GenerateFloat(),
-                        _Char = GenerateChar(),
-                        _String = GenerateString(),
-                        _DateTime = GenerateDateTime(),
-                        _Decimal = GenerateDecimal()
+                        Bool = GenerateBool(),
+                        Byte = GenerateByte(),
+                        Int = GenerateInt(),
+                        Float = GenerateFloat(),
+                        Char = GenerateChar(),
+                        String = GenerateString(),
+                        DateTime = GenerateDateTime(),
                     };
                 default:
                     options = DefaultOptions;
                     return new GenericRecord
                     {
-                        Id = 5,
-                        Name = "Generic Name",
-                        Description = "Generic Description",
-                        _Bool = false,
-                        _Byte = 255,
-                        _Int = 100,
-                        _Float = 3.14f,
-                        _Char = '\0',
-                        _String = "GenericString",
-                        _DateTime = DateTime.Now
+                        Id = GenerateInt(),
+                        Name = GenerateString(),
+                        Description = GenerateString(),
+                        Bool = GenerateBool(),
+                        Byte = GenerateByte(),
+                        Int = GenerateInt(),
+                        Float = GenerateFloat(),
+                        Char = GenerateChar(),
+                        String = GenerateString(),
+                        DateTime = GenerateDateTime(),
                     };
             }
         }

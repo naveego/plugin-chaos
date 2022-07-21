@@ -8,11 +8,11 @@ namespace PluginChaos.API.Read
 {
     public static partial class Read
     {
-        public static async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema)
+        public static async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema, int recordLimit)
         {
             var endpoint = EndpointHelper.GetEndpointForSchema(schema);
 
-            var records = endpoint?.ReadRecordsAsync(schema);
+            var records = endpoint?.ReadRecordsAsync(schema, recordLimit);
 
             if (records != null)
             {

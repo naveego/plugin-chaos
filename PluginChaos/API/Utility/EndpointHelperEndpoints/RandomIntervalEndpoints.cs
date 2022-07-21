@@ -16,6 +16,7 @@ using Naveego.Sdk.Plugins;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PluginChaos.DataContracts;
+using PluginChaos.Helper;
 using Serilog.Formatting.Display;
 
 namespace PluginChaos.API.Utility.EndpointHelperEndpoints
@@ -24,10 +25,10 @@ namespace PluginChaos.API.Utility.EndpointHelperEndpoints
     {
         private class RandomIntervalEndpoint : Endpoint
         {
-            public override async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema,
+            public override async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema,  int recordLimit = 100, 
                 bool isDiscoverRead = false)
             {
-                var limit = 100;
+                var limit = recordLimit;
                 var count = 0;
                 while (count < limit)
                 {

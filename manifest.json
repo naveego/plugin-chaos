@@ -17,21 +17,20 @@
   "canWrite": true,
   "configSchema": {
     "ui": {
-      "ui:order": [
-        "ConnectionName"
-      ]
+      "ui": {
+        "ui:order": ["RecordLimit"]
+      }
     },
     "schema": {
       "type": "object",
       "properties": {
-        "ConnectionName" : {
-          "type": "string",
-          "title": "Connection Name",
-          "description": "Connection name."
+        "RecordLimit": {
+          "type": "number",
+          "title": "Record Limit",
+          "default": 100
         }
       },
-      "required": [
-      ]
+      "required": ["RecordLimit"]
     }
   }
 }

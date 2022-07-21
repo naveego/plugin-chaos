@@ -33,20 +33,21 @@ namespace PluginChaos.API.Discover
                 schema = await GetSchemaForEndpoint(schema, endpoint);
 
                 // get sample and count
-                yield return await AddSampleAndCount(schema, sampleSize, endpoint);
+                yield return await AddSampleAndCount(schema, sampleSize, endpoint, settings);
             }
         }
 
         private static async Task<Schema> AddSampleAndCount(Schema schema,
-            int sampleSize, Endpoint? endpoint)
+            int sampleSize, Endpoint? endpoint, Settings settings)
         {
+            
             if (endpoint == null)
             {
                 return schema;
             }
 
             // add sample and count
-            var records = Read.Read.ReadRecordsAsync(schema).Take(sampleSize);
+            var records = Read.Read.ReadRecordsAsync(schema, settings.RecordLimit).Take(sampleSize);
             schema.Sample.AddRange(await records.ToListAsync());
             schema.Count = await GetCountOfRecords(endpoint);
 

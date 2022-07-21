@@ -164,7 +164,7 @@ namespace PluginChaos.Plugin
 
                 Logger.Info($"Refresh schemas attempted: {refreshSchemas.Count}");
 
-                var schemas = Discover.GetRefreshSchemas(refreshSchemas, sampleSize);
+                var schemas = Discover.GetRefreshSchemas(refreshSchemas, _server.Settings, sampleSize);
 
                 discoverSchemasResponse.Schemas.AddRange(await schemas.ToListAsync());
 
@@ -248,12 +248,12 @@ namespace PluginChaos.Plugin
 
                 if (!string.IsNullOrWhiteSpace(request.RealTimeSettingsJson))
                 {
-                    // recordsCount = await Read.ReadRecordsRealTimeAsync(_apiClient, request, responseStream, context);
+                    recordsCount = await Read.ReadRecordsRealTimeAsync(request, responseStream, context);
                     throw new NotImplementedException();
                 }
                 else
                 {
-                    var records = Read.ReadRecordsAsync(schema);
+                    var records = Read.ReadRecordsAsync(schema, _server.Settings.RecordLimit);
 
                     await foreach (var record in records)
                     {

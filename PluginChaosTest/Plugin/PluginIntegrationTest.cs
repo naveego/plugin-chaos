@@ -759,10 +759,7 @@ namespace PluginChaosTest.Plugin
             var response = client.ReadStream(request);
             var responseStream = response.ResponseStream;
             var records = new List<Record>();
-            // if (records.Count != 0)
-            // {
-            //     
-            // }
+            
             RpcException e = await Assert.ThrowsAsync<RpcException>(async () =>
             {
                 while (await responseStream.MoveNext())
@@ -953,23 +950,30 @@ namespace PluginChaosTest.Plugin
             var response = client.ReadStream(request);
             var responseStream = response.ResponseStream;
             var records = new List<Record>();
- 
-            while (await responseStream.MoveNext())
+            // while (await responseStream.MoveNext())
+            // {
+            //     records.Add(responseStream.Current);
+            // }
+            //Uncomment above and comment out next block to test record returns.
+            RpcException e = await Assert.ThrowsAsync<RpcException>(async () =>
             {
-                records.Add(responseStream.Current);
-            }
-            
+                while (await responseStream.MoveNext())
+                {
+                    records.Add(responseStream.Current);
+                }
+            });
             // assert
             //var record = JsonConvert.DeserializeObject<Dictionary<string, object>>(records[0].DataJson);
             
             //Can also add assert to compare that each count had same record.
             if (records.Count != 0)
             {
-                Assert.Single(records);
+                Assert.Equal(100, records.Count);
             }
             if (records.Count == 0)
             {
                 Assert.Empty(records);
+                Assert.Contains("No Records Found Chaos Error.", e.Message);
             }
             
            

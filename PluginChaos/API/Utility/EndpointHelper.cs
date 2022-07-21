@@ -61,7 +61,7 @@ namespace PluginChaos.API.Utility
             });
         }
 
-        public virtual async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema, bool isDiscoverRead = false)
+        public virtual async IAsyncEnumerable<Record> ReadRecordsAsync(Schema schema, int recordLimit = 100, bool isDiscoverRead = false)
         {
             throw new NotImplementedException();
             yield break;
@@ -112,8 +112,8 @@ namespace PluginChaos.API.Utility
                 
             var propertyBool = new Property
             {
-                Id = "_Bool",
-                Name = "_Bool",
+                Id = "Bool",
+                Name = "Bool",
                 Type = PropertyType.Bool,
                 IsKey = false,
                 IsNullable = true,
@@ -123,8 +123,8 @@ namespace PluginChaos.API.Utility
                 
             var propertyByte = new Property
             {
-                Id = "_Byte",
-                Name = "_Byte",
+                Id = "Byte",
+                Name = "Byte",
                 Type = PropertyType.Integer,
                 IsKey = false,
                 IsNullable = true,
@@ -134,8 +134,8 @@ namespace PluginChaos.API.Utility
                 
             var propertyInt = new Property
             {
-                Id = "_Int",
-                Name = "_Int",
+                Id = "Int",
+                Name = "Int",
                 Type = PropertyType.Integer,
                 IsKey = false,
                 IsNullable = true,
@@ -145,8 +145,8 @@ namespace PluginChaos.API.Utility
                 
             var propertyFloat = new Property
             {
-                Id = "_Float",
-                Name = "_Float",
+                Id = "Float",
+                Name = "Float",
                 Type = PropertyType.Float,
                 IsKey = false,
                 IsNullable = true,
@@ -156,8 +156,8 @@ namespace PluginChaos.API.Utility
                 
             var propertyChar = new Property
             {
-                Id = "_Char",
-                Name = "_Char",
+                Id = "Char",
+                Name = "Char",
                 Type = PropertyType.String,
                 IsKey = false,
                 IsNullable = true,
@@ -167,8 +167,8 @@ namespace PluginChaos.API.Utility
                 
             var propertyString = new Property
             {
-                Id = "_String",
-                Name = "_String",
+                Id = "String",
+                Name = "String",
                 Type = PropertyType.String,
                 IsKey = false,
                 IsNullable = true,
@@ -178,26 +178,15 @@ namespace PluginChaos.API.Utility
                 
             var propertyDateTime = new Property
             {
-                Id = "_DateTime",
-                Name = "_DateTime",
+                Id = "DateTime",
+                Name = "DateTime",
                 Type = PropertyType.Datetime,
                 IsKey = false,
                 IsNullable = true,
                 TypeAtSource = "DateTime"
             };
             properties.Add(propertyDateTime);
-            
-            var propertyDecimal = new Property
-            {
-                Id = "_Decimal",
-                Name = "_Decimal",
-                Type = PropertyType.Decimal,
-                IsKey = false,
-                IsNullable = true,
-                TypeAtSource = "Decimal"
-            };
-            properties.Add(propertyDecimal);
-                
+
             schema.Properties.AddRange(properties);
             
             return Task.FromResult(schema);

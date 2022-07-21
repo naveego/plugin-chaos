@@ -1,4 +1,5 @@
 using System;
+using PluginChaos.API.Utility.EndpointHelperEndpoints;
 
 namespace PluginChaos.API.Utility
 {
@@ -7,9 +8,15 @@ namespace PluginChaos.API.Utility
         public static bool GenerateBool()
         //Random True or False return.
         {
+            var result = false;
             var rnd = new Random();
-            var rndBool = rnd.Next(0, 1);
-            return rndBool != 0;
+            var rndBool = rnd.Next();
+            if (rndBool % 2 != 0)
+            {
+                result = true;
+            }
+
+            return result;
         }
 
         public static byte GenerateByte()
@@ -61,10 +68,6 @@ namespace PluginChaos.API.Utility
         {
             return DateTime.Now;
         }
-
-        public static decimal GenerateDecimal()
-        {
-            return Convert.ToDecimal("0.0");
-        }
+        
     }
 }
